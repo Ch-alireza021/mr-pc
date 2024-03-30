@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
+import MainHeader from '../src/components/header/mainHeader';
 
 export const metadata: Metadata = {
   title: "MR PC",
@@ -12,9 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="fa">
+      <body dir="rtl">
       <AppRouterCacheProvider>
+        <MainHeader/>
         {children}
       </AppRouterCacheProvider>
         </body>
