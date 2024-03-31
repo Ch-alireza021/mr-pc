@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
-import MainHeader from '../src/components/header/mainHeader';
+import ThemeLayout from "@/src/theme/themeLayout";
+import MainHeader from "@/src/components/header/main-header/mainHeader";
 
 export const metadata: Metadata = {
   title: "MR PC",
@@ -14,12 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa">
-      <body dir="rtl">
-      <AppRouterCacheProvider>
-        <MainHeader/>
-        {children}
-      </AppRouterCacheProvider>
-        </body>
+      <body>
+        <ThemeLayout>
+          <MainHeader />
+          {children}
+        </ThemeLayout>
+      </body>
     </html>
   );
 }
