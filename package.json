@@ -16,12 +16,14 @@
     "@mui/material-nextjs": "^5.15.11",
     "next": "14.1.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "stylis-plugin-rtl": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/stylis": "^4.2.5",
     "typescript": "^5"
   }
 }
