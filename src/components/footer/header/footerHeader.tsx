@@ -10,7 +10,6 @@ const FooterHeader = () => {
   return (
     <Box
     component={"footer"}
-    paddingX={"20px"}
     sx={{
       display: "flex",
       alignItems: "center",
