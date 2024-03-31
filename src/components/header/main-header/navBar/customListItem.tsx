@@ -28,9 +28,9 @@ const CustomListItem = ({ children, href, text }: ICustomListItem) => {
       href={href}
       disableRipple
       onMouseEnter={() => setIsHover(true)}
-      onMouseOut={() => setIsHover(false)}
+      onMouseLeave={() => setIsHover(false)}
     >
-      <ListItemIcon sx={{ color: isHover ? "green" : "inherit" }}>
+      <ListItemIcon sx={{ color: isHover ? "#03c03c" : "inherit" }}>
         {children}
       </ListItemIcon>
       <ListItemText primary={text} />
