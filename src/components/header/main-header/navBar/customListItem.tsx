@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Box from '@mui/material/Box';
+import styled from '@emotion/styled/macro';
 
 // --------------------------------------------------------
 //                     INTERFACE
@@ -17,11 +19,9 @@ interface ICustomListItem {
 const CustomListItem = ({ children, href, text }: ICustomListItem) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   return (
+
     <ListItemButton
       sx={{
-        "&.MuiListItemButton-root:hover": {
-          bgcolor: "transparent",
-        },
         display: "flex",
         gap: "8px",
       }}
