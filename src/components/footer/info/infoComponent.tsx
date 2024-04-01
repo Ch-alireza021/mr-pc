@@ -21,15 +21,17 @@ const InfoComponent = ({
           display: "flex",
           alignItems: "center",
           color: isOpen ? theme.palette.secondary.main : "inherit",
-          cursor:"pointer",
-          minWidth:"110px"
+          cursor: "pointer",
+          minWidth: "110px",
         }}
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <Typography>{text}</Typography>
         {isOpen ? <KeyboardArrowDownIcon /> : <ChevronLeftIcon />}
       </Box>
-      {isOpen && children}
+      {isOpen && (
+        <Box sx={{ display: "flex", flexDirection: "column" }}>{children}</Box>
+      )}
     </Box>
   );
 };
