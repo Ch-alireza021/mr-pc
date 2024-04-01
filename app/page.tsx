@@ -1,6 +1,12 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import ProductCard from '@/src/components/page/home/product-card/productCard';
+import Box from '@mui/material/Box';
+
 
 export default function Home() {
-  return <main>Mr-PC</main>;
+
+  return (
+    <Box component={"main"} padding={"20px"}>
+      <ProductCard/>
+    </Box>
+  );
 }
