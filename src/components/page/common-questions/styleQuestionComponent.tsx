@@ -33,7 +33,7 @@ const QuestionComponent = ({
         <Typography variant="h5">{text}</Typography>
         {isOpen ? <KeyboardArrowDownIcon /> : <ChevronLeftIcon />}
       </Box>
-      {isOpen &&  children }
+      {isOpen && <Box paddingLeft={"20px"} paddingY={"10px"}> {children}</Box>}
       <Divider />
     </Box>
   );
