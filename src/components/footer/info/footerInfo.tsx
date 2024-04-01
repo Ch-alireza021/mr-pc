@@ -1,16 +1,31 @@
+"use client";
 import React from "react";
 import InfoComponent from "./infoComponent";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import SocialMedia from "./socialMedia";
+import Link from "next/link";
+import { ROUTE } from "@/src/config/route";
+import styled from "@emotion/styled";
+
+// ------------------------------------------
+//                 style
+const CustomLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    color: #03c03c;
+  }
+`;
+// ------------------------------------------
 
 const FooterInfo = () => {
   return (
-    <Box sx={{display:"flex",justifyContent:"space-between"}}>
+    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
       <Box sx={{ display: "flex", gap: 10 }}>
         <InfoComponent text="اطلاعات">
-          <Typography>درباره مستر پی سی</Typography>
-          <Typography>قوانین مستر پی سی</Typography>
+          <CustomLink href={ROUTE.ABOUT_US}>درباره مستر پی سی</CustomLink>
+          <CustomLink href={ROUTE.TERMS}>قوانین مستر پی سی</CustomLink>
         </InfoComponent>
 
         <InfoComponent text="پرسش‌های متداول">
