@@ -3,9 +3,8 @@ import styled from "@emotion/styled";
 import theme from "@/src/theme/theme";
 import { Button } from "@mui/base/Button";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import ButtonM from '@mui/material/Button';
 
+import ButtonM from '@mui/material/Button';
 
 export const InputRoot = styled("div")(
   ({}) => `
@@ -92,10 +91,6 @@ export const Content = styled(Box)({
   gap: "25px",
 });
 
-export const Text = styled(Typography)({
-  color: theme.palette.customGray.main,
-  paddingBottom: "8px",
-});
 
 export const CustomButton=styled(ButtonM)`
 background-color: ${theme.palette.secondary.main};
