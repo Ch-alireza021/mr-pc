@@ -5,6 +5,7 @@ import { Button } from "@mui/base/Button";
 import Box from "@mui/material/Box";
 
 import ButtonM from '@mui/material/Button';
+import Link from "next/link";
 
 export const InputRoot = styled("div")(
   ({}) => `
@@ -100,4 +101,14 @@ align-self: center;
 &:hover {
         background-color: ${theme.palette.secondary.dark};
       }
+
 `
+
+
+export const CustomLink = styled(Link)`
+text-decoration: none;
+color: ${theme.palette.secondary.main};
+&:hover {
+  color: #03c03c;
+}
+`;

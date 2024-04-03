@@ -20,6 +20,7 @@ const CustomLink = styled(Link)`
 // ------------------------------------------
 
 const FooterInfo = () => {
+    // const href=usePa
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
       <Box sx={{ display: "flex", gap: 10 }}>
@@ -29,9 +30,9 @@ const FooterInfo = () => {
         </InfoComponent>
 
         <InfoComponent text="پرسش‌های متداول">
-          <Typography> شیوه ثبت سفارش </Typography>
-          <Typography> شیوه پرداخت </Typography>
-          <Typography> شیوه ارسال </Typography>
+          <CustomLink href={ROUTE.COMMON_QUESTION}> شیوه ثبت سفارش </CustomLink>
+          <CustomLink href={ROUTE.COMMON_QUESTION}> شیوه پرداخت </CustomLink>
+          <CustomLink href={ROUTE.COMMON_QUESTION}> شیوه ارسال </CustomLink>
         </InfoComponent>
 
         <InfoComponent text="امکانات اضافی">
@@ -39,9 +40,9 @@ const FooterInfo = () => {
         </InfoComponent>
 
         <InfoComponent text="حساب کاربری من">
-          <Typography> حساب کاربری من </Typography>
-          <Typography> تاریخچه سفارش‌ها </Typography>
-          <Typography> لیست دلخواه </Typography>
+          <CustomLink href={ROUTE.LOGIN}> حساب کاربری من </CustomLink>
+          <CustomLink href={ROUTE.LOGIN}> تاریخچه سفارش‌ها </CustomLink>
+          <CustomLink href={ROUTE.LOGIN}> لیست دلخواه </CustomLink>
         </InfoComponent>
       </Box>
       <SocialMedia />

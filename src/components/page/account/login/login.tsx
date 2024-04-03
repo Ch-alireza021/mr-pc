@@ -8,6 +8,7 @@ import {
   Container,
   Content,
   CustomButton,
+  CustomLink,
   IconButton,
   InputAdornment,
   InputElement,
@@ -19,6 +20,7 @@ import Typography from "@mui/material/Typography";
 import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
 import theme from "@/src/theme/theme";
+import { ROUTE } from "@/src/config/route";
 
 interface MyFormsValues {
   userName: string;
@@ -134,7 +136,7 @@ const Login = () => {
             </CustomButton>
             <Box color={theme.palette.customGray.main}>
               <Typography>برای اولین مرتبه می‌خواهی وارد شوی؟!</Typography>
-              <Typography>از این قسمت وارد شو</Typography>
+              <CustomLink href={ROUTE.SIGN_UP}>از این قسمت وارد شو</CustomLink>
             </Box>
           </Content>
         </Wrapper>
