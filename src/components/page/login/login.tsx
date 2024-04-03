@@ -74,6 +74,7 @@ const Login = () => {
                     ? "red"
                     : theme.palette.customGray.main
                 }
+                fontSize={"14px"}
               >
                 نام کاربری را وارد کنید
               </Typography>
@@ -98,6 +99,7 @@ const Login = () => {
                     ? "red"
                     : theme.palette.customGray.main
                 }
+                fontSize={"14px"}
               >
                 رمز عبور را وارد کنید
               </Typography>
