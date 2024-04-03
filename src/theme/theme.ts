@@ -31,6 +31,9 @@ const roboto = Roboto({
 
 const theme = createTheme({
   direction: "rtl",
+  
+ 
+
   palette: {
     // secondary:"#03c03c",
     secondary: {
@@ -55,6 +58,27 @@ const theme = createTheme({
         },
       },
     },
+    
+    MuiCssBaseline: {
+      styleOverrides: {
+        html: {
+          '& ::-webkit-scrollbar': {
+                            width: '8px',
+          },
+          '& ::-webkit-scrollbar-track': {
+            backgroundColor:"inherit",
+          },
+          '& ::-webkit-scrollbar-thumb': {
+            borderRadius:"20px",
+            backgroundColor:"#a0a0a0",
+          },
+          '& ::-webkit-scrollbar-thumb:hover': {
+            backgroundColor:"#696969"
+          },
+        },
+      },
+    },
+
     MuiListItemButton: {
       styleOverrides: {
         root: {
@@ -73,7 +97,13 @@ const theme = createTheme({
         }),
       },
     },
+    
   },
+
+
+
+
+  
 });
 
 export default theme;
