@@ -14,13 +14,9 @@ import {
   InputRoot,
   Wrapper,
 } from "./loginStyles";
-import LogoBtn from "../../logo-button/logoBtn";
+import LogoBtn from "../../../logo-button/logoBtn";
 import Typography from "@mui/material/Typography";
-import {
-
-  FormikProps,
-  useFormik,
-} from "formik";
+import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
 import theme from "@/src/theme/theme";
 
