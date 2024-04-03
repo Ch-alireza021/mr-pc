@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import theme from "@/src/theme/theme";
+import Collapse from '@mui/material/Collapse';
 
 const InfoComponent = ({
   children,
@@ -29,9 +30,11 @@ const InfoComponent = ({
         <Typography>{text}</Typography>
         {isOpen ? <KeyboardArrowDownIcon /> : <ChevronLeftIcon />}
       </Box>
-      {isOpen && (
+     
+        <Collapse in={isOpen}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>{children}</Box>
-      )}
+        </Collapse>
+   
     </Box>
   );
 };
