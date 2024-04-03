@@ -6,6 +6,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import theme from "@/src/theme/theme";
 import Divider from "@mui/material/Divider";
+import Collapse from "@mui/material/Collapse";
 
 const QuestionComponent = ({
   children,
@@ -33,7 +34,11 @@ const QuestionComponent = ({
         <Typography variant="h5">{text}</Typography>
         {isOpen ? <KeyboardArrowDownIcon /> : <ChevronLeftIcon />}
       </Box>
-      {isOpen && <Box paddingLeft={"20px"} paddingY={"10px"}> {children}</Box>}
+      <Collapse in={isOpen}>
+        <Box paddingLeft={"20px"} paddingY={"10px"}>
+          {children}
+        </Box>
+      </Collapse>
       <Divider />
     </Box>
   );
