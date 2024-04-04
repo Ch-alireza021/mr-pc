@@ -3,11 +3,14 @@ import React, { FC } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Input as BaseInput } from "@mui/base/Input";
-import { CustomButton, InputElement, InputRoot } from "../login/loginStyles";
+import { CustomButton, IconButton, InputAdornment, InputElement, InputRoot } from "../login/loginStyles";
 import { FormikProps, useFormik } from "formik";
 import theme from "@/src/theme/theme";
 import * as Yup from "yup";
 import Grid from "@mui/material/Grid";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 interface IInput {
   children: React.ReactNode;
@@ -20,6 +23,7 @@ interface MyFormsValues {
   lastname: string;
   username: string;
   password: string;
+  confirmPassword: string;
   phoneNumber: string;
   address: string;
 }
@@ -50,6 +54,7 @@ const Input: FC<IInput> = ({ children, color, text }) => {
 };
 
 const SignUp = () => {
+  const [isVerified, setIsVerified] = useState(false);
   // ----------------------------------------
   //       FORMIK
   const initialValues: MyFormsValues = {
@@ -57,6 +62,7 @@ const SignUp = () => {
     lastname: "",
     username: "",
     password: "",
+    confirmPassword: "",
     phoneNumber: "",
     address: "",
   };
@@ -76,6 +82,12 @@ const SignUp = () => {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/,
         "رمز عبور باید حداقل دارای یک حرف بزرگ، یک حرف کوچک، یک رقم و یک کاراکتر خاص باشد."
       ),
+    confirmPassword: Yup.string()
+      .required("تایید رمز عبور الزامیست ")
+      .oneOf(
+        [Yup.ref("password"), null],
+        "رمزعبورها ها باید مطابقت داشته باشند"
+      ),
     phoneNumber: Yup.string()
       .required("شماره تلفن الزامیست")
       .matches(/^[0-9]{10}$/, "شماره تلفن باید 10 رقم باشد"),
@@ -92,9 +104,16 @@ const SignUp = () => {
     validationSchema,
   });
   // ----------------------------------------------------
+  const [isShowPassword, setIsShowPassword,] = useState<boolean>(false);
+  const [isShowConfirmPassword, setIsShowConfirmPassword,] = useState<boolean>(false);
+  const siteKey="6Ld2Ra8pAAAAAO5zqpEY2mRV_wk2Jqt1fC2Dv6jn";
+  const secretKey="6Ld2Ra8pAAAAACOBYqanyF2z1sjKpWmUdtRkv8Pl"
+  // ----------------------------------------------------
   return (
     <Box paddingX={"20px"} paddingY={"30px"}>
-      <Typography>ثبت نام در مستر پی سی</Typography>
+      <Typography variant="h4" paddingBottom={"30px"}>
+        ثبت نام در مستر پی سی
+      </Typography>
       <Box>
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={2} width={"650px"}>
@@ -182,7 +201,57 @@ const SignUp = () => {
                 onChange={formik.handleChange}
                 value={formik.values.password}
                 onBlur={formik.handleBlur}
-                type="text"
+                type={isShowPassword ? "Typography" : "password"}
+                endAdornment={
+                  <InputAdornment>
+                    <IconButton
+                      size="small"
+                      aria-label="toggle password visibility"
+                      onClick={() => setIsShowPassword((prev) => !prev)}
+                    >
+                      {isShowPassword ? (
+                        <VisibilityOff fontSize="small" />
+                      ) : (
+                        <Visibility fontSize="small" />
+                      )}
+                    </IconButton>
+                  </InputAdornment> }
+              />
+            </Input>
+
+            <Input
+              text={
+                formik.touched.password && formik.errors.password
+                  ? formik.errors.password
+                  : "رمز عبور تکرار"
+              }
+              color={!!(formik.touched.password && formik.errors.password)}
+            >
+              <BaseInput
+                slots={{
+                  root: InputRoot,
+                  input: InputElement,
+                }}
+                id="confirmPassword"
+                name="confirmPassword"
+                onChange={formik.handleChange}
+                value={formik.values.confirmPassword}
+                onBlur={formik.handleBlur}
+                type={isShowConfirmPassword ? "Typography" : "password"}
+                endAdornment={
+                  <InputAdornment>
+                    <IconButton
+                      size="small"
+                      aria-label="toggle password visibility"
+                      onClick={() => setIsShowConfirmPassword((prev) => !prev)}
+                    >
+                      {isShowConfirmPassword ? (
+                        <VisibilityOff fontSize="small" />
+                      ) : (
+                        <Visibility fontSize="small" />
+                      )}
+                    </IconButton>
+                  </InputAdornment> }
               />
             </Input>
 
@@ -231,8 +300,38 @@ const SignUp = () => {
                 type="text"
               />
             </Input>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "flex-end",
 
-            <CustomButton type="submit">ادامه</CustomButton>
+                width: "50%",
+              }}
+            >
+              <ReCAPTCHA
+                sitekey={siteKey}
+                onChange={(response) => {
+                  if (response) {
+                    setIsVerified(true);
+                  } else {
+                    setIsVerified(false);
+                  }
+                }}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+
+                justifyContent: "center",
+                alignItems: "flex-end",
+                padding: "20px",
+                width: "100%",
+              }}
+            >
+              <CustomButton type="submit">ادامه</CustomButton>
+            </Box>
           </Grid>
         </form>
       </Box>

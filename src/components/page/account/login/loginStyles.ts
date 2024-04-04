@@ -95,6 +95,7 @@ export const Content = styled(Box)({
 
 export const CustomButton=styled(ButtonM)`
 background-color: ${theme.palette.secondary.main};
+color: white;
 width: 150px;
 font-size: large;
 align-self: center;

@@ -25,7 +25,7 @@ const FooterInfo = () => {
     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
       <Box sx={{ display: "flex", gap: 10 }}>
         <InfoComponent text="اطلاعات">
-          <CustomLink href={ROUTE.ABOUT_US}>درباره مستر پی سی</CustomLink>
+          <CustomLink href={ROUTE.ABOUT_US} >درباره مستر پی سی</CustomLink>
           <CustomLink href={ROUTE.TERMS}>قوانین مستر پی سی</CustomLink>
         </InfoComponent>
 

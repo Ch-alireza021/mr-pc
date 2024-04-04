@@ -18,6 +18,7 @@ import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import LogoBtn from "../../logo-button/logoBtn";
 import PersonIcon from "@mui/icons-material/Person";
 import MainNavBar from "./navBar/navBar";
+import Collapse from "@mui/material/Collapse";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -154,11 +155,29 @@ export default function MainHeader() {
     </Menu>
   );
 
+  // ----------------------------------------------------
+  const [y, setY] = React.useState<boolean>(true);
+  
+  const handleNavigation = () => {
+    if ((window as Window).scrollY === 0) {
+      console.log("scrolling up");
+      setY(true);
+    } else {
+      setY(false);
+    }
+  };
+  
+  React.useEffect(() => {
+    window.addEventListener("scroll", () => handleNavigation());
+    return window.removeEventListener("scroll", () => handleNavigation());
+  }, []);
+
+  // ----------------------------------------------------
   return (
     <>
-      <Box sx={{ width: "100vw" }}>
+      <Box sx={{ width: "100vw", height: "130px" }}>
         <AppBar
-          position="static"
+          position="fixed"
           sx={{ background: "#fff", color: "#606060", width: "100vw" }}
         >
           <Toolbar>
@@ -217,7 +236,9 @@ export default function MainHeader() {
               </IconButton>
             </Box>
           </Toolbar>
-          <MainNavBar />
+          <Collapse in={y}>
+            <MainNavBar />
+          </Collapse>
         </AppBar>
         {renderMobileMenu}
         {renderMenu}

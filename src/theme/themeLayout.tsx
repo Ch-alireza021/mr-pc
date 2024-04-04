@@ -7,7 +7,7 @@ import createCache from "@emotion/cache";
 import rtlPlugin from "stylis-plugin-rtl";
 import { prefixer } from "stylis";
 import { CacheProvider } from "@emotion/react";
-
+import Box from "@mui/material/Box";
 
 const ThemeLayout = (props: { children: React.ReactNode }) => {
   const cacheRtl = createCache({
@@ -21,7 +21,9 @@ const ThemeLayout = (props: { children: React.ReactNode }) => {
           <CacheProvider value={cacheRtl}>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-              {props.children}
+              <Box sx={{ overflow: "hidden", overflowY: "scroll" }}>
+                {props.children}
+              </Box>
             </ThemeProvider>
           </CacheProvider>
         </AppRouterCacheProvider>
@@ -31,5 +33,3 @@ const ThemeLayout = (props: { children: React.ReactNode }) => {
 };
 
 export default ThemeLayout;
-
-
