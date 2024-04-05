@@ -48,6 +48,7 @@ export const loginFunc = (recivedData: {
     console.log("ADMIN");
     Cookies.remove(USER_DATA);
     saveDataToCookie(accessToken, refreshToken, null);
+    return "ADMIN";
   } else {
     console.log("USER");
     const userData: User = {
@@ -60,5 +61,6 @@ export const loginFunc = (recivedData: {
       role: user.role,
     };
     saveDataToCookie(accessToken, refreshToken, JSON.stringify(userData));
+    return "USER";
   }
 };

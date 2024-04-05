@@ -21,28 +21,49 @@ import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
 import theme from "@/src/theme/theme";
 import { ROUTE } from "@/src/config/route";
+import api from "@/src/config/base_url";
+import { URL_LOGIN } from "@/src/config/url";
+import { loginFunc } from "@/src/utils/cookies";
+import { useRouter } from "next/navigation";
+
 
 interface MyFormsValues {
-  userName: string;
+  username: string;
   password: string;
 }
 
 const Login = () => {
+  const navigate=useRouter()
   const [isShow, setIsShow] = useState<boolean>(false);
   const initialValues: MyFormsValues = {
-    userName: "",
+    username: "",
     password: "",
   };
 
   const validationSchema: Yup.ObjectSchema<MyFormsValues> = Yup.object({
-    userName: Yup.string().required(),
+    username: Yup.string().required(),
     password: Yup.string().required(),
   });
 
   const formik: FormikProps<MyFormsValues> = useFormik({
     initialValues: initialValues,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log(values);
+      try {
+        const response = await api.post(URL_LOGIN, {
+          username: values.username,
+          password: values.password,
+        });
+        const recivedData = response.data;
+       const role= loginFunc(recivedData);
+       if(role==="USER"){
+        navigate.replace(ROUTE.HOME)
+       }
+
+
+      } catch (error) {
+        console.error("Login failed:", error);
+      }
     },
     validationSchema,
   });
@@ -68,7 +89,7 @@ const Login = () => {
             <Box>
               <Typography
                 color={
-                  formik.touched.userName && formik.errors.userName
+                  formik.touched.username && formik.errors.username
                     ? "red"
                     : theme.palette.customGray.main
                 }
@@ -81,10 +102,10 @@ const Login = () => {
                   root: InputRoot,
                   input: InputElement,
                 }}
-                id="userName"
-                name="userName"
+                id="username"
+                name="username"
                 onChange={formik.handleChange}
-                value={formik.values.userName}
+                value={formik.values.username}
                 onBlur={formik.handleBlur}
                 type="text"
               />
