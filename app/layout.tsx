@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
+import ThemeLayout from "@/src/theme/themeLayout";
+import MainHeader from "@/src/components/header/main-header/mainHeader";
+import Footer from "@/src/components/footer/footer";
 
 export const metadata: Metadata = {
-  title: "MR PC",
+  title: "لذت بازی با مستر پی سی",
   description: "Mr PC online shop",
 };
 
@@ -12,12 +14,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fa">
       <body>
-      <AppRouterCacheProvider>
-        {children}
-      </AppRouterCacheProvider>
-        </body>
+        <ThemeLayout>
+          <MainHeader />
+          {children}
+          <Footer/>
+        </ThemeLayout>
+      </body>
     </html>
   );
 }
