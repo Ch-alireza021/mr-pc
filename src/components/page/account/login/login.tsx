@@ -58,6 +58,9 @@ const Login = () => {
        const role= loginFunc(recivedData);
        if(role==="USER"){
         navigate.replace(ROUTE.HOME)
+      }else{
+        console.log("navigate")
+        navigate.replace("/admin")
        }
 
 

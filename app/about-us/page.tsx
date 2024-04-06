@@ -4,9 +4,6 @@ import React from 'react'
 const page = () => {
   return (
     <>
-    <head>
-    <title>"درباره فروشگاه مستر پی سی"</title>
-    </head>
     <AboutUs/>
     </>
   )
