@@ -4,5 +4,7 @@ export const ROUTE={
     ABOUT_US:"about-us",
     COMMON_QUESTION:"common-questions",
     LOGIN:"login",
-    SIGN_UP:"sign-up"
+    SIGN_UP:"sign-up",
+    ADMIN:"/admin",
+    CATEGORY:"/admin/category"
 }

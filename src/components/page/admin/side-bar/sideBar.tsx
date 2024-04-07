@@ -19,18 +19,41 @@ import theme from "@/src/theme/theme";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Button from "@mui/material/Button";
 import { removeCookie } from "@/src/utils/cookies";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ROUTE } from "@/src/config/route";
 const drawerWidth = 200;
+import MenuIcon from "@mui/icons-material/Menu";
+import { Children } from "@/src/config/interface";
 
-export default function ClippedDrawer() {
-    const red=theme.palette.customRed.main;
-  const [clicked, setClicked] = React.useState<string>("محصولات");
-  const router=useRouter()
-  const logOut=()=>{
+export default function AdminHeader({ children }: { children: Children }) {
+  const red = theme.palette.customRed.main;
+  const router = useRouter();
+  const pathName = usePathname();
+  console.log(pathName);
+  const [clicked, setClicked] = React.useState<string>(pathName);
+
+  const logOut = () => {
     removeCookie();
-    router.replace(ROUTE.HOME)
-  }
+    router.replace(ROUTE.HOME);
+  };
+  //   ------------------------------------
+  const handleClick = (path: string): void => {
+    setClicked(path);
+    router.push(path);
+  };
+  //   ------------------------------------
+  const list = [
+    {
+      text: "محصولات",
+      path: ROUTE.ADMIN,
+      icon: <ProductionQuantityLimitsIcon />,
+    },
+    { text: "دسته بندی", path: ROUTE.CATEGORY, icon: <MenuIcon /> },
+    // { text: "", path: "", icon: "" },
+    // { text: "", path: "", icon: "" },
+    // { text: "", path: "", icon: "" },
+    // { text: "", path: "", icon: "" },
+  ];
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -44,7 +67,13 @@ export default function ClippedDrawer() {
         }}
       >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography variant="h6" noWrap component="div" color={red} fontWeight={"900"}> 
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            color={red}
+            fontWeight={"900"}
+          >
             پنل ادمین مستر پی سی
           </Typography>
           <Button
@@ -71,30 +100,31 @@ export default function ClippedDrawer() {
         <Toolbar />
         <Box sx={{ overflow: "auto", borderColor: "green" }}>
           <List>
-            {["محصولات", "Starred", "Send email", "Drafts"].map(
-              (text, index) => (
-                <ListItem key={text} disablePadding>
-                  <ListItemButton
+            {list.map((item, index) => (
+              <ListItem key={item.text} disablePadding>
+                <ListItemButton
+                  sx={{
+                    background: clicked === item.path ? red : "inherit",
+                    color: clicked === item.path ? "#fff" : "inherit",
+                    "&.MuiListItemButton-root:hover": {
+                      background: theme.palette.secondary.dark,
+                      color: "#fff",
+                    },
+                  }}
+                  onClick={() => handleClick(item.path)}
+                >
+                  <ListItemIcon
                     sx={{
-                      background: clicked === text ? red : "inherit",
-                      color: clicked === text ? "#fff" : "inherit",
-                      "&.MuiListItemButton-root:hover": {
-                        background: theme.palette.secondary.dark,
-                        color: "#fff",
-                      },
+                      color: clicked === item.text ? "#fff" : "inherit",
+                      paddingRight: "10px",
                     }}
-                    onClick={() => setClicked(text)}
                   >
-                    <ListItemIcon
-                      sx={{ color: clicked === text ? "#fff" : "inherit" }}
-                    >
-                      <ProductionQuantityLimitsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </ListItem>
-              )
-            )}
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
           </List>
           {/* <List>
             {["محصولات", "Starred", "Send email", "Drafts"].map(
@@ -127,38 +157,7 @@ export default function ClippedDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-        <Box sx={{ background: "#fff", width: "100%" }}>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-            dolor purus non enim praesent elementum facilisis leo vel. Risus at
-            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
-            rutrum quisque non tellus. Convallis convallis tellus id interdum
-            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
-            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-            vivamus at augue. At augue eget arcu dictum varius duis at
-            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
-          </Typography>
-          <Typography>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-            elementum integer enim neque volutpat ac tincidunt. Ornare
-            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
-            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
-            ornare massa eget egestas purus viverra accumsan in. In hendrerit
-            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
-            aliquam sem et tortor. Habitant morbi tristique senectus et.
-            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
-            euismod elementum nisi quis eleifend. Commodo viverra maecenas
-            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
-            ultrices sagittis orci a.
-          </Typography>
-        </Box>
+        <Box sx={{ background: "#fff", width: "100%" }}>{children}</Box>
       </Box>
     </Box>
   );
