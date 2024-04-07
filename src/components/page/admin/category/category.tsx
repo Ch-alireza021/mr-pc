@@ -1,0 +1,51 @@
+"use client";
+import React from "react";
+import Typography from "@mui/material/Typography";
+import {
+  getCategoryLimit,
+} from "@/src/utils/services/data/getData";
+import { DataTable } from "@/src/components/table/DataTable";
+import { Row } from "@/src/config/interface";
+import { Box } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "@/src/components/loading/loading";
+import EditCategoryComponent from "./editComponent";
+
+const Category = () => {
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["getCategoryLimit"],
+    queryFn: async () => await getCategoryLimit(1, 5),
+  });
+  if (isLoading) return <Loading/>
+  if (isError) return {isError}
+  const row = data?.data?.categories;
+  console.log(data);
+  const col = [
+    {
+      id: 1,
+      label: "دسته بندی",
+      renderCol: (row:Row) => row.name,
+    },
+    {
+      id: 2,
+      label: "",
+      renderCol: () => <EditCategoryComponent/>,
+    },
+
+  ];
+  return (
+    <Box>
+      <Typography
+        variant="h5"
+        fontWeight={900}
+        padding={"0 15px 10px "}
+      >
+        دسته بندی
+      </Typography>
+      <DataTable columns={col} rows={row} />
+    </Box>
+  );
+};
+
+export default Category;
