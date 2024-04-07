@@ -7,33 +7,28 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
 import theme from "@/src/theme/theme";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Button from "@mui/material/Button";
 import { removeCookie } from "@/src/utils/cookies";
 import { usePathname, useRouter } from "next/navigation";
 import { ROUTE } from "@/src/config/route";
-const drawerWidth = 200;
 import { Children } from "@/src/config/interface";
-import MenuIcon from "@mui/icons-material/Menu";
-import TocIcon from '@mui/icons-material/Toc';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
+import { list } from "./list";
+
+
+const drawerWidth = 200;
 
 export default function AdminHeader({ children }: { children: Children }) {
   const red = theme.palette.customRed.main;
   const router = useRouter();
   const pathName = usePathname();
-  console.log(pathName);
   const [clicked, setClicked] = React.useState<string>(pathName);
+  //   ------------------------------------
 
   const logOut = () => {
     removeCookie();
@@ -45,18 +40,6 @@ export default function AdminHeader({ children }: { children: Children }) {
     router.push(path);
   };
   //   ------------------------------------
-  const list = [
-    {
-      text: "محصولات",
-      path: ROUTE.ADMIN,
-      icon: <ProductionQuantityLimitsIcon />,
-    },
-    { text: "دسته بندی", path: ROUTE.CATEGORY, icon: <MenuIcon /> },
-    { text: "زیرمجموعه", path:ROUTE.SUBCATEGORY, icon: <TocIcon/> },
-    { text: "کاربر", path: ROUTE.USER, icon: <GroupAddIcon/> },
-    { text: "سفارشات", path:  ROUTE.ORDERS, icon: <LocalMallIcon/>},
-    // { text: "", path: "", icon: "" },
-  ];
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -66,7 +49,6 @@ export default function AdminHeader({ children }: { children: Children }) {
           zIndex: (theme) => theme.zIndex.drawer + 1,
           background: "#fff",
           color: "#2b2d42",
-          //   color: "#606060",
         }}
       >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -104,7 +86,7 @@ export default function AdminHeader({ children }: { children: Children }) {
         <Box sx={{ overflow: "auto", borderColor: "green" }}>
           <List>
             {list.map((item, index) => (
-              <ListItem key={item.text} disablePadding>
+              <ListItem key={item.path} disablePadding>
                 <ListItemButton
                   sx={{
                     background: clicked === item.path ? red : "inherit",
@@ -125,33 +107,6 @@ export default function AdminHeader({ children }: { children: Children }) {
                     {item.icon}
                   </ListItemIcon>
                   <ListItemText primary={item.text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-          {/* <List>
-            {["محصولات", "Starred", "Send email", "Drafts"].map(
-              (text, index) => (
-                <ListItem key={text} disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <ProductionQuantityLimitsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </ListItem>
-              )
-            )}
-          </List> */}
-          <Divider />
-          <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
             ))}
