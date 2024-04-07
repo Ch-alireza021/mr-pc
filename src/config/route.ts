@@ -6,5 +6,6 @@ export const ROUTE={
     LOGIN:"login",
     SIGN_UP:"sign-up",
     ADMIN:"/admin",
-    CATEGORY:"/admin/category"
+    CATEGORY:"/admin/category",
+    SUBCATEGORY:"/admin/subcategory",
 }

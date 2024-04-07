@@ -22,8 +22,10 @@ import { removeCookie } from "@/src/utils/cookies";
 import { usePathname, useRouter } from "next/navigation";
 import { ROUTE } from "@/src/config/route";
 const drawerWidth = 200;
-import MenuIcon from "@mui/icons-material/Menu";
 import { Children } from "@/src/config/interface";
+import MenuIcon from "@mui/icons-material/Menu";
+import TocIcon from '@mui/icons-material/Toc';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 export default function AdminHeader({ children }: { children: Children }) {
   const red = theme.palette.customRed.main;
@@ -49,8 +51,8 @@ export default function AdminHeader({ children }: { children: Children }) {
       icon: <ProductionQuantityLimitsIcon />,
     },
     { text: "دسته بندی", path: ROUTE.CATEGORY, icon: <MenuIcon /> },
-    // { text: "", path: "", icon: "" },
-    // { text: "", path: "", icon: "" },
+    { text: "زیرمجموعه", path:ROUTE.SUBCATEGORY, icon: <TocIcon/> },
+    { text: "", path: "", icon: <GroupAddIcon/> },
     // { text: "", path: "", icon: "" },
     // { text: "", path: "", icon: "" },
   ];
