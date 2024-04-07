@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.14",
     "@mui/material-nextjs": "^5.15.11",
+    "@tanstack/react-query": "^5.29.0",
     "axios": "^1.6.8",
     "formik": "^2.4.5",
     "js-cookie": "^3.0.5",
