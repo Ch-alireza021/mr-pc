@@ -10,14 +10,18 @@ declare module "js-cookie" {
 const ACCESS_TOKEN_KEY = "access_token";
 const REFRESH_TOKEN_KEY = "refresh_token";
 const USER_DATA = "user_data";
+const LOGIN_ROLE = "user_data";
 
 export const saveDataToCookie = (
   accessToken: string,
   refreshToken: string,
-  userData: string | null
+  userData: string | null,
+  isLogin: string
 ) => {
   Cookies.set(ACCESS_TOKEN_KEY, accessToken, { expires: 7 }),
     Cookies.set(REFRESH_TOKEN_KEY, refreshToken, { expires: 7 });
+  Cookies.set(LOGIN_ROLE, isLogin, { expires: 7 });
+
   if (userData) {
     Cookies.set(USER_DATA, userData, { expires: 7 });
   }
@@ -30,10 +34,15 @@ export const getAccessToken = () => {
 export const getRefreshToken = () => {
   return Cookies.get(REFRESH_TOKEN_KEY);
 };
+export const getLoginRole = () => {
+  return Cookies.get(LOGIN_ROLE);
+};
 
-export const removeTokensFromCookie = () => {
+export const removeCookie = () => {
   Cookies.remove(ACCESS_TOKEN_KEY);
   Cookies.remove(REFRESH_TOKEN_KEY);
+  Cookies.remove(LOGIN_ROLE);
+  Cookies.remove(USER_DATA);
 };
 
 export const loginFunc = (recivedData: {
@@ -44,10 +53,11 @@ export const loginFunc = (recivedData: {
   const user = recivedData.data.user;
   const accessToken = recivedData.token.accessToken;
   const refreshToken = recivedData.token.refreshToken;
-  if (recivedData.data.user.role === "ADMIN") {
+  const loginRole = recivedData.data.user.role;
+  if (loginRole === "ADMIN") {
     console.log("ADMIN");
     Cookies.remove(USER_DATA);
-    saveDataToCookie(accessToken, refreshToken, null);
+    saveDataToCookie(accessToken, refreshToken, null, loginRole);
     return "ADMIN";
   } else {
     console.log("USER");
@@ -60,7 +70,12 @@ export const loginFunc = (recivedData: {
       _id: user._id,
       role: user.role,
     };
-    saveDataToCookie(accessToken, refreshToken, JSON.stringify(userData));
+    saveDataToCookie(
+      accessToken,
+      refreshToken,
+      JSON.stringify(userData),
+      loginRole
+    );
     return "USER";
   }
 };
