@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ThemeLayout from "@/src/theme/themeLayout";
+import ReactQueryProvider from "@/src/utils/reactQuery/reactQuery";
 
 export const metadata: Metadata = {
   title: "لذت بازی با مستر پی سی",
@@ -14,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="fa">
       <body>
-        <ThemeLayout>{children}</ThemeLayout>
+        <ReactQueryProvider>
+          <ThemeLayout>{children}</ThemeLayout>
+        </ReactQueryProvider>
       </body>
     </html>
   );
