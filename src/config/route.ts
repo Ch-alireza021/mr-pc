@@ -9,4 +9,5 @@ export const ROUTE={
     CATEGORY:"/admin/category",
     SUBCATEGORY:"/admin/subcategory",
     USER:"/admin/user",
+    ORDERS:"/admin/orders",
 }

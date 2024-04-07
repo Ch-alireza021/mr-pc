@@ -26,6 +26,7 @@ import { Children } from "@/src/config/interface";
 import MenuIcon from "@mui/icons-material/Menu";
 import TocIcon from '@mui/icons-material/Toc';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 
 export default function AdminHeader({ children }: { children: Children }) {
   const red = theme.palette.customRed.main;
@@ -53,7 +54,7 @@ export default function AdminHeader({ children }: { children: Children }) {
     { text: "دسته بندی", path: ROUTE.CATEGORY, icon: <MenuIcon /> },
     { text: "زیرمجموعه", path:ROUTE.SUBCATEGORY, icon: <TocIcon/> },
     { text: "کاربر", path: ROUTE.USER, icon: <GroupAddIcon/> },
-    // { text: "", path: "", icon: "" },
+    { text: "سفارشات", path:  ROUTE.ORDERS, icon: <LocalMallIcon/>},
     // { text: "", path: "", icon: "" },
   ];
   return (
