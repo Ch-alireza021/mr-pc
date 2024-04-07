@@ -8,4 +8,5 @@ export const ROUTE={
     ADMIN:"/admin",
     CATEGORY:"/admin/category",
     SUBCATEGORY:"/admin/subcategory",
+    USER:"/admin/user",
 }

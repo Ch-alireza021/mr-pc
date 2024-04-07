@@ -52,7 +52,7 @@ export default function AdminHeader({ children }: { children: Children }) {
     },
     { text: "دسته بندی", path: ROUTE.CATEGORY, icon: <MenuIcon /> },
     { text: "زیرمجموعه", path:ROUTE.SUBCATEGORY, icon: <TocIcon/> },
-    { text: "", path: "", icon: <GroupAddIcon/> },
+    { text: "کاربر", path: ROUTE.USER, icon: <GroupAddIcon/> },
     // { text: "", path: "", icon: "" },
     // { text: "", path: "", icon: "" },
   ];
