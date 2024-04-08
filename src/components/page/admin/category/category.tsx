@@ -10,6 +10,7 @@ import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "@/src/components/loading/loading";
 import EditCategoryComponent from "./editComponent";
+import AddCategory from "./addCategory";
 
 const Category = () => {
 
@@ -36,13 +37,15 @@ const Category = () => {
   ];
   return (
     <Box>
+      <Box sx={{display:"flex",justifyContent:"space-between",alignitems:"center",paddingBottom:"20px",paddingX:"20px"}}>
       <Typography
         variant="h5"
         fontWeight={900}
-        padding={"0 15px 10px "}
       >
         دسته بندی
       </Typography>
+      <AddCategory/>
+      </Box>
       <DataTable columns={col} rows={row} />
     </Box>
   );
