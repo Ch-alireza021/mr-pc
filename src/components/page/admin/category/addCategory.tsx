@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { red } from "@/src/theme/theme";
 import AddIcon from "@mui/icons-material/Add";
@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
-import { creatCat, creatSubCat } from "@/src/utils/services/data/creatData";
+import { creatCat } from "@/src/utils/services/data/creatData";
 
 const style = {
   position: "absolute" as "absolute",
@@ -28,21 +28,33 @@ const style = {
 const AddCategory = () => {
   const [open, setOpen] = React.useState(false);
   const [inputCategory, setInputcategory] = useState<string | null>(null);
+  const [helpertext, sethelpertext] = useState<string | null>(null);
+  // ----------------------------------------
+  const handleEdite=()=>{
+
+  }
+  // ----------------------------------------
+  //                  MODAL
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const handleClose = () => {
+    setOpen(false);
+    sethelpertext(null);
+  };
 
   const handleSubmit = async () => {
     if (inputCategory) {
-      const response = await creatSubCat("66140dc802298be1fc080980",inputCategory);
-      console.log(response);
-      if (response) {
+      const res = await creatCat(inputCategory);
+      console.log(res);
+      if (res && res !== 409) {
         handleClose();
+      } else if (res === 409) {
+        sethelpertext("نام دسته بندی   تکراری است");
       }
     } else {
+      sethelpertext("نام دسته بندی را وارد نمایید");
     }
   };
-
+  // ---------------------------------------------
   return (
     <>
       <Button
@@ -65,12 +77,17 @@ const AddCategory = () => {
             اسم دسته بندی را وارد کنید
           </Typography>
           <TextField
+            sx={{
+              "& .MuiFormHelperText-root": {
+                color: red,
+              },
+            }}
             id="standard-basic"
             variant="standard"
             fullWidth
             color="error"
-            ref={inputRef}
             onChange={(e) => setInputcategory(e.target.value)}
+            helperText={helpertext}
           />
           <Button
             color="success"
