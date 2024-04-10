@@ -31,10 +31,16 @@ const Category = () => {
     {
       id: 2,
       label: "",
-      renderCol: () => <EditCategoryComponent/>,
+      renderCol: (row:Row) => <EditCategoryComponent row={row} onclick={handleEditCategoryComponent} />,
     },
 
   ];
+
+  const handleEditCategoryComponent=()=>{
+
+  }
+
+
   return (
     <Box>
       <Box sx={{display:"flex",justifyContent:"space-between",alignitems:"center",paddingBottom:"20px",paddingX:"20px"}}>
