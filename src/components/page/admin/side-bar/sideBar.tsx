@@ -115,7 +115,7 @@ export default function AdminHeader({ children }: { children: Children }) {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-        <Box sx={{ background: "#fff", width: "100%" }}>{children}</Box>
+        <Box sx={{ background: "rgb(214 213 201)", width: "100%"}}>{children}</Box>
       </Box>
     </Box>
   );
