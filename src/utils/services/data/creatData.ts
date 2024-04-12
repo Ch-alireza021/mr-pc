@@ -1,22 +1,21 @@
-
-// CREAT CATEGORY 
+// CREAT CATEGORY
 
 import api from "@/src/config/base_url";
 
-export const creatCat = async (categoryName: string) => {
+export const creatCat: (categoryName: string) => Promise<void> = async (
+  categoryName
+) => {
   try {
     const resCat = await api.post("/categories", {
       name: categoryName,
     });
     if (resCat.status === 201) {
       console.log("Category added successfully!");
-      return resCat.data.data.category._id;
+      // return resCat.data.data.category._id;
     }
-  } catch (error:any) {
+  } catch (error: any) {
     console.error("Error adding category:", error);
-    if (error.message === "Request failed with status code 409") {
-      return 409;
-    }
+    throw error;
   }
 };
 // export const creatCat = async (categoryName, subCategoryName) => {
