@@ -4,8 +4,9 @@ import Button from "@mui/material/Button";
 import { darkGreen, red } from "@/src/theme/theme";
 import { Row } from "../../../../config/interface";
 
-const EditCategoryComponent = (props: { row: Row,onclick:(id:string,action:string)=>void }) => {
+const EditCategoryComponent = (props: { row: Row,onEdit:(id:string,name:string)=>void }) => {
   console.log(props.row);
+
 
   return (
     <Box sx={{ display: "flex", gap: 2 }}>
@@ -13,7 +14,7 @@ const EditCategoryComponent = (props: { row: Row,onclick:(id:string,action:strin
         variant="contained"
         sx={{ background: darkGreen }}
         color="success"
-        onClick={()=>onclick(props.row._id,"edit")}
+        onClick={()=>props.onEdit(props.row._id,props.row.name)}
       >
         ویرایش
       </Button>
