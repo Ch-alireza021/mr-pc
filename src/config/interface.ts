@@ -24,5 +24,13 @@ export interface Row {
 
 export interface ITableBody {
   columns: Array<TableCol> | [];
-  rows: Array<Row> |[];
+  rows: Array<Row> | [];
+  page: number;
+  totalPage: number;
+  onPageChange: (page: number) => void;
 }
+export interface ITable {
+  columns: Array<TableCol> | [];
+  rows: Array<Row> | [];
+}
+
