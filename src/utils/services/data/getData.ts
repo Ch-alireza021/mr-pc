@@ -2,7 +2,7 @@
 // import { URL_CATEGORY, URL_ORDERS, URL_SUBCATEGORY } from "../../config";
 
 import api from "@/src/config/base_url";
-import { URL_CATEGORY } from "@/src/config/url";
+import { URL_CATEGORY, URL_SUBCATEGORY } from "@/src/config/url";
 
 // export const getProducts=async(page,category)=>{
 //     const respons=category ?await api.get(`products?page=${page}&limit=5&category=${category}`):await api.get(`products?page=${page}&limit=5&sort=-createdAt`);
@@ -17,13 +17,30 @@ import { URL_CATEGORY } from "@/src/config/url";
 // // -----------------------------------------------------------
 
 export const getCategory=async(id:string)=>{
-    const respons=await api.get(`categories/${id}`);
+    const respons=await api.get(`${URL_CATEGORY}/${id}`);
+    return respons.data;
+};
+// // -----------------------------------------------------------
+
+export const getCategories=async()=>{
+    const respons=await api.get(`${URL_CATEGORY}?limit=${1000}`);
     return respons.data;
 };
 // // -----------------------------------------------------------
 export const getCategoryLimit=async(page:number,limit:number)=>{
     try{
         const respons=await api.get(`${URL_CATEGORY}?page=${page}&limit=${limit}`);
+        console.log("Get all category successfully");
+        return respons.data;
+    }catch(error){
+        // console.log(`Get all category error:${error.message}`);
+    }
+};
+// // -----------------------------------------------------------
+// // -----------------------------------------------------------
+export const getSubcategoryLimit=async(page:number,limit:number)=>{
+    try{
+        const respons=await api.get(`${URL_SUBCATEGORY}?page=${page}&limit=${limit}`);
         console.log("Get all category successfully");
         return respons.data;
     }catch(error){
