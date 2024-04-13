@@ -1,9 +1,9 @@
-import User from '@/src/components/page/admin/user/user'
+import Users from '@/src/components/page/admin/user/users'
 import React from 'react'
 
 const UserPage = () => {
   return (
-   <User/>
+   <Users/>
   )
 }
 
