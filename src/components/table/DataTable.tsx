@@ -2,9 +2,16 @@ import { Box, Table, Typography } from "@mui/material";
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
 import { ITableBody } from "../../config/interface";
-import { FC } from "react";
+import React, { FC } from "react";
+import TablePagination from "@mui/material/TablePagination";
+import PaginationComp from "./pagination";
 
-export const DataTable: FC<ITableBody> = ({ columns = [], rows = [] }) => {
+export const DataTable: FC<ITableBody> = ({
+  columns = [],
+  rows = [],
+  ...props
+}) => {
+  console.log("table", rows);
   return (
     <Box
       sx={{
@@ -18,8 +25,10 @@ export const DataTable: FC<ITableBody> = ({ columns = [], rows = [] }) => {
         <TableBody rows={rows} columns={columns} />
       </Table>
       <Box
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-      ></Box>
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center",paddingY:"10px" }}
+      >
+        <PaginationComp {...props} />
+      </Box>
     </Box>
   );
 };
