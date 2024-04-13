@@ -27,11 +27,16 @@ export const saveDataToCookie = (
   }
 };
 
+export const setAccessToken = (accessToken: string) => {
+  Cookies.set(ACCESS_TOKEN_KEY, accessToken, { expires: 7 });
+  return "resolve";
+};
+
 export const getAccessToken = () => {
   return Cookies.get(ACCESS_TOKEN_KEY);
 };
 
-export const getRefreshToken = () => {
+export const getRefreshToken = (): string | undefined => {
   return Cookies.get(REFRESH_TOKEN_KEY);
 };
 export const getLoginRole = () => {
