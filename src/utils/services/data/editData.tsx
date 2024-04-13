@@ -1,5 +1,5 @@
 import api from "@/src/config/base_url";
-import { URL_CATEGORY } from "@/src/config/url";
+import { URL_CATEGORY, URL_SUBCATEGORY } from "@/src/config/url";
 
 export const editCategory: (
   categoryName: string,
@@ -16,5 +16,22 @@ export const editCategory: (
   } catch (error: any) {
     console.error("Error adding category:", error);
     throw error;
+  }
+};
+
+export const editSubCategory = async (
+  name: string,
+  cat: string,
+  id: string
+) => {
+  try {
+    const resSubcategory = await api.patch(`${URL_SUBCATEGORY}/${id}`, {
+      category: cat,
+      name: name,
+    });
+    console.log(resSubcategory);
+    console.log("Subategory edit successfully!")
+  } catch (error) {
+    throw(error)
   }
 };
