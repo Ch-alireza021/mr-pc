@@ -1,8 +1,8 @@
-import Subcategory from "@/src/components/page/admin/subcategory/subcategory";
+import Subcategories from "@/src/components/page/admin/subcategories/subcategories";
 import React from "react";
 
 const SubcategoryPage = () => {
-  return <Subcategory />;
+  return <Subcategories />;
 };
 
 export default SubcategoryPage;

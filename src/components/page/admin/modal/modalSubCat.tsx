@@ -86,7 +86,7 @@ const ModalSubCategories: FC<ICategories> = ({
   }, [onEdit]);
 
   const categories = data?.data.categories;
-  // console.log("data", categories);
+  
 
   const queryClient = useQueryClient();
 
