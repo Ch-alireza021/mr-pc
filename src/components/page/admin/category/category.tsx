@@ -33,16 +33,22 @@ const Category = () => {
     }
   };
   // ---------------------------------------------
+  // LIMIT AND PAGE
+  const heigh = document.documentElement.offsetHeight;
+  const limit = Math.floor((heigh - 230) / 70);
+  const [page, setPage] = React.useState(1);
+  const handlePageChange = (page: number) => {
+    setPage(page);
+  };
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["getCategoryLimit"],
-    queryFn: async () => await getCategoryLimit(1, 5),
+    queryKey: ["getCategoryLimit",page],
+    queryFn: async () => await getCategoryLimit(page, limit),
   });
   if (isLoading) return <Loading />;
   if (isError) return { isError };
 
   const row = data?.data?.categories;
-  console.log(data);
   const col = [
     {
       id: 1,
@@ -80,7 +86,13 @@ const Category = () => {
         </Typography>
         <AddCategory />
       </Box>
-      <DataTable columns={col} rows={row} />
+      <DataTable
+        columns={col}
+        rows={row}
+        page={data?.page}
+        totalPage={data?.total_pages}
+        onPageChange={handlePageChange}
+      />
       <ModalCategories
         req={reqEditCategory}
         text="دسته بندی"
