@@ -7,11 +7,11 @@ import { Row } from "@/src/config/interface";
 import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "@/src/components/loading/loading";
-import EditCategoryComponent from "./editComponent";
 import { editSubCategory } from "@/src/utils/services/data/editData";
 import ShowCat from "./showCat";
 import ModalSubCategories from "../modal/modalSubCat";
 import AddSubCategory from "./addSubCategory";
+import EditSubCategoryComponent from "./editComponent";
 
 const Subcategories = () => {
   // ----------------------------------------
@@ -65,7 +65,7 @@ const Subcategories = () => {
       id: 3,
       label: "",
       renderCol: (row: Row) => (
-        <EditCategoryComponent row={row} onEdit={handleEditCategoryComponent} />
+        <EditSubCategoryComponent row={row} onEdit={handleEditCategoryComponent} />
       ),
     },
   ];
