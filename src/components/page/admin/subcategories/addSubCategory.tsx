@@ -35,7 +35,7 @@ const AddSubCategory = () => {
         text="زیرمجموعه"
         onOpen={open}
         onClose={handleClose}
-        queryKey={"getSubCategoryLimit"}
+        queryKey={"getSubcategoryLimit"}
         onEdit={null}
       />
     </>
