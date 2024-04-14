@@ -2,7 +2,7 @@
 // import { URL_CATEGORY, URL_ORDERS, URL_SUBCATEGORY } from "../../config";
 
 // import api from "@/src/config/base_url";
-import { URL_CATEGORY, URL_SUBCATEGORY, URL_USER } from "@/src/config/url";
+import { URL_CATEGORY, URL_PRODUCT, URL_SUBCATEGORY, URL_USER } from "@/src/config/url";
 import { api } from "../interceptors/interceptors";
 
 // export const getProducts=async(page,category)=>{
@@ -76,6 +76,10 @@ export const getUser=async(page:number,limit:number)=>{
 //     const respons=await api.get(`users/${id}`)
 //     return respons.data
 // }
+export const getProducts=async(page:number,limit:number)=>{
+    const respons=await api.get(`${URL_PRODUCT}?page=${page}&limit=${limit}`)
+    return respons.data
+}
 // export const generalGet=async(URL)=>{
 //     const respons=await api.get(`${URL}`)
 //     return respons.data
