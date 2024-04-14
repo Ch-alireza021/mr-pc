@@ -85,10 +85,10 @@ export const getProducts=async(page:number,limit:number)=>{
 //     return respons.data
 // }
 
-// export const generalGetWithId=async(URL,id)=>{
-//     const respons=await api.get(`${URL}/${id}`)
-//     return respons.data
-// }
+export const generalGetWithId=async(URL:string,id:string)=>{
+    const respons=await api.get(`${URL}/${id}`)
+    return respons.data
+}
 
 // export const getOrderById=async(id)=>{
 //     const response=await api.get(`${URL_ORDERS}/${id}`);
