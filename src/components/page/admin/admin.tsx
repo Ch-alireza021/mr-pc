@@ -1,11 +1,12 @@
 
 import React from "react";
+import Products from "./products/products";
 
 
 const Admin = () => {
   return (
     <>
-      <div>Admin</div>
+      <Products/>
     </>
   );
 };
