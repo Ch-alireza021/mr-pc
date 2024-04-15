@@ -11,6 +11,7 @@ import EditCategoryComponent from "./editComponent";
 import AddCategory from "./addCategory";
 import ModalCategories, { ICategories } from "../modal/modalCat";
 import { editCategory } from "@/src/utils/services/data/editData";
+import { tabaleLimit } from "@/src/utils/services/generalFunc/generalFunction";
 
 const Category = () => {
   // ----------------------------------------
@@ -34,8 +35,7 @@ const Category = () => {
   };
   // ---------------------------------------------
   // LIMIT AND PAGE
-  const heigh = document.documentElement.offsetHeight;
-  const limit = Math.floor((heigh - 230) / 70);
+  const limit = tabaleLimit()
   const [page, setPage] = React.useState(1);
   const handlePageChange = (page: number) => {
     setPage(page);

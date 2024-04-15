@@ -12,6 +12,8 @@ import ShowCat from "./showCat";
 import ModalSubCategories from "../modal/modalSubCat";
 import AddSubCategory from "./addSubCategory";
 import EditSubCategoryComponent from "./editComponent";
+import { tabaleLimit } from "@/src/utils/services/generalFunc/generalFunction";
+import HoverReveal from "@/src/components/table/hoverReveal";
 
 const Subcategories = () => {
   // ----------------------------------------
@@ -38,8 +40,7 @@ const Subcategories = () => {
     }
   };
   // ---------------------------------------------
-  const heigh = document.documentElement.offsetHeight;
-  const limit = Math.floor((heigh - 230) / 70);
+  const limit = tabaleLimit();
   const [page, setPage] = React.useState(1);
 
   const { data, isLoading, isError } = useQuery({
@@ -54,18 +55,21 @@ const Subcategories = () => {
     {
       id: 1,
       label: "زیرمجموعه",
-      renderCol: (row: Row) => row.name,
+      renderCol: (row: Row) => <HoverReveal>{row.name}</HoverReveal>,
     },
     {
       id: 2,
       label: "دسته بندی",
-      renderCol: (row: Row) => <ShowCat id={row?.category} />,
+      renderCol: (row: Row) => <ShowCat row={row} />,
     },
     {
       id: 3,
       label: "",
       renderCol: (row: Row) => (
-        <EditSubCategoryComponent row={row} onEdit={handleEditCategoryComponent} />
+        <EditSubCategoryComponent
+          row={row}
+          onEdit={handleEditCategoryComponent}
+        />
       ),
     },
   ];
