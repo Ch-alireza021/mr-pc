@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { TableBody as MuiTableBody, TableCell, TableRow } from "@mui/material";
 import { ITable, Row } from "@/src/config/interface";
-import HoverReveal from "./hoverReveal";
+
 
 const TableBody: FC<ITable> = ({ rows = [], columns = [] }) => {
   return (
@@ -10,7 +10,7 @@ const TableBody: FC<ITable> = ({ rows = [], columns = [] }) => {
         <TableRow key={row._id}>
           {columns.map((col) => (
             <TableCell key={`${row._id}-${col.id}`}>
-              <HoverReveal>{col.renderCol(row)}</HoverReveal>
+               {col.renderCol(row)}
             </TableCell>
           ))}
         </TableRow>

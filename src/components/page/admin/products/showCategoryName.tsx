@@ -2,6 +2,7 @@ import { generalGetWithId } from "@/src/utils/services/data/getData";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import Loading from "@/src/components/loading/loading";
+import HoverReveal from "@/src/components/table/hoverReveal";
 
 const ShowCategoryName = (props: { URL: string; id: string }) => {
   const { data, isLoading, isError } = useQuery({
@@ -16,7 +17,7 @@ const ShowCategoryName = (props: { URL: string; id: string }) => {
     props.URL === "categories"
       ? data?.data?.category.name
       : data?.data?.subcategory.name;
-  return <div>{name}</div>;
+  return <HoverReveal>{name}</HoverReveal>;
 };
 
 export default ShowCategoryName;

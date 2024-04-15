@@ -11,33 +11,39 @@ const CustomBox = styled.div`
 const Text = styled.div`
   word-wrap: none;
   position: absolute;
-  top: 100%;
+  top: 0;
   left: 0;
-  transform: translate(0, -50%);
+  transform: translate(0, -10px);
   z-index: 999;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 10px 20px 10px 0;
   white-space: nowrap;
 `;
 
 const HoverReveal = (props: { children: React.ReactNode }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
-    <CustomBox
-      onMouseEnter={() => {
-        setIsHovered(true);
-      }}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {isHovered && <Text> {props.children}</Text>}
-      <Box
-        sx={{ overflow: "hidden", textOverflow: "ellipsis", width: " 100px" }}
-      >
-        {props.children}
-      </Box>
-    </CustomBox>
+    <>
+        <CustomBox
+          onMouseEnter={() => {
+            setIsHovered(true);
+          }}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {isHovered && <Text> {props.children}</Text>}
+          <Box
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              width: " 100px",
+            }}
+          >
+            {props.children}
+          </Box>
+        </CustomBox>
+
+    </>
   );
 };
 

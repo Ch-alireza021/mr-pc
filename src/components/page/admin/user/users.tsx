@@ -7,19 +7,20 @@ import { Row } from "@/src/config/interface";
 import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "@/src/components/loading/loading";
-
-
+import HoverReveal from "@/src/components/table/hoverReveal";
+import AddressComp from "./address";
+import { tabaleLimit } from "@/src/utils/services/generalFunc/generalFunction";
 
 const Users = () => {
-  const heigh = document.documentElement.offsetHeight;
-  const limit = Math.floor((heigh - 230) / 70);
+
+  const limit =tabaleLimit()
   const [page, setPage] = React.useState(1);
   const handlePageChange = (page: number) => {
     setPage(page);
   };
   // --------------------------------------------------
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["getUsers",page],
+    queryKey: ["getUsers", page],
     queryFn: async () => await getUser(page, limit),
   });
   if (isLoading) return <Loading />;
@@ -30,11 +31,31 @@ const Users = () => {
   // --------------------------------------------------
 
   const col = [
-    { id: 1, label: "نام", renderCol: (row: Row) => row.firstname },
-    { id: 2, label: "نام خانوادگی", renderCol: (row: Row) => row.lastname },
-    { id: 3, label: "شماره تماس", renderCol: (row: Row) => row.phoneNumber },
-    { id: 4, label: " نام کاربری", renderCol: (row: Row) => row.username },
-    { id: 5, label: " آدرس", renderCol: (row: Row) => row.address },
+    {
+      id: 1,
+      label: "نام",
+      renderCol: (row: Row) => <HoverReveal> {row.firstname}</HoverReveal>,
+    },
+    {
+      id: 2,
+      label: "نام خانوادگی",
+      renderCol: (row: Row) => <HoverReveal>{row.lastname}</HoverReveal>,
+    },
+    {
+      id: 3,
+      label: "شماره تماس",
+      renderCol: (row: Row) => <HoverReveal>{row.phoneNumber}</HoverReveal>,
+    },
+    {
+      id: 4,
+      label: " نام کاربری",
+      renderCol: (row: Row) => <HoverReveal>{row.username}</HoverReveal>,
+    },
+    {
+      id: 5,
+      label: " آدرس",
+      renderCol: (row: Row) => <AddressComp>{row.address}</AddressComp>,
+    },
   ];
   return (
     <Box>
@@ -58,7 +79,6 @@ const Users = () => {
         totalPage={data?.total_pages}
         onPageChange={handlePageChange}
       />
-
     </Box>
   );
 };
